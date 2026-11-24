@@ -37,7 +37,7 @@ const {Client} = require("pg");
 async function main(){
     console.log("Seeding");
     const client = await new Client({
-        connectionString: process.env.CONNECTION_STRING
+        connectionString: process.argv[2]
     });
     await client.connect();
     await client.query(createTables);

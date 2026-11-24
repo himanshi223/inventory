@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+</head>
+<body>
+    <h1>All categories</h1>
+    <% if(locals.categories) { %>
+        <ul>
+            <% categories.forEach((category)=>{ %>
+                <li>
+                    <a href="categories/<%=category.id%>"><%= category.category %></a> 
+                    <br>
+                    <a href="categories/<%=category.id%>/update">Update Category</a>
+                </li>
+            <% }) %>
+        </ul>
+    <% } else{ %>
+        <p>No categories yet</p>
+    <% } %>
+    <a href="/categories/add">Add New Category</a>
+</body>
+</html> 

@@ -1,7 +1,9 @@
 const express = require("express");
 const path = require("node:path");
-const pg = require("pg");
 const indexRouter = require("./routes/indexRouter");
+const itemRouter = require("./routes/itemRouter");
+const categoryRouter = require("./routes/categoryRouter");
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -10,7 +12,9 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({extended:true}))
 
-app.use("/",indexRouter)
+app.use("/",indexRouter);
+app.use("/items",itemRouter);
+app.use("/categories",categoryRouter)
 
 app.use((error, req, res, next)=>{
     console.error(error);

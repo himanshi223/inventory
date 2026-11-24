@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= locals.title %></title>
+</head>
+<body>
+    <h1><%= locals.title %></h1>
+    <%- include("partials/errors.ejs") %>
+    <form method="POST" action="./add">
+        <div>
+            <label for="item">Item Name</label>
+            <input type="text" name="item" id="item" required/>
+        </div>
+        <div>
+            <label for="quantity">Quantity</label>
+            <input type="number" name="quantity" id="quantity" required/>
+        </div>
+        <div>
+            <label for="unit">Measuring Unit</label>
+            <input type="text" name="unit" id="unit" required/>
+        </div>
+        <div>
+            <label for="category">Category</label>
+            <select name="category" id="category" required>
+                <% categories.forEach((category)=>{%>
+                   <option><%=category.category%></option>
+                <% }) %>
+            </select>
+            <a href="/categories/add">Add new category</a>
+        </div>
+        <button type="submit">Add new item</button>
+    </form>
+</body>
+</html>

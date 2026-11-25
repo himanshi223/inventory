@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%=title%></title>
+</head>
+<body>
+    <h1><%=title%></h1>
+    <form METHOD="POST" action="/categories/<%=category.categoryId%>/delete">
+        <fieldset>
+            <legend>
+                Are you sure you want to delete <%=category.category%>? <br>
+                All items associated with this category will be deleted as well.
+            </legend>
+            <input type="radio" id="yes" name="confirmation" value="true" checked>
+            <label for="yes">Yes</label>
+            <input type="radio" id="no" name="confirmation" value="false">
+            <label for="no">No</label>
+        </fieldset>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

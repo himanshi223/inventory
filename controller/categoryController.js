@@ -74,5 +74,29 @@ const updateCategoryPost = [
         await categoriesdb.updateCategory(matchedData(req).category, categoryId);
         res.redirect(`/categories`);
     }
-]
-module.exports = {listAllCategories,listItemsOfCategory, addNewCategoryGet, addNewCategoryPost, updateCategoryGet, updateCategoryPost}
+];
+
+async function deleteCategoryGet(req, res){
+    const {categoryId} = req.params;
+    const category = await categoriesdb.getCategory(categoryId);
+    res.render(
+        "deleteCategoryForm", {
+            title: "Delete Category",
+            category : {categoryId, category}
+        }
+    )
+}
+
+async function deleteCategoryPost(req, res){
+    const {categoryId} = req.params;
+    const {confirmation} = req.body;
+    console.log(confirmation);
+    if(confirmation === "true"){
+        await itemsdb.deleteItemByCategory(categoryId);
+        await categoriesdb.deleteCategory(categoryId);
+        res.redirect("/categories");
+    }
+    res.redirect("/categories");
+}
+
+module.exports = {listAllCategories,listItemsOfCategory, addNewCategoryGet, addNewCategoryPost, updateCategoryGet, updateCategoryPost, deleteCategoryGet, deleteCategoryPost}

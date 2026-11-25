@@ -98,4 +98,25 @@ const updateItemPost = [
     }
 ]
 
-module.exports = {listAllItems, viewItem, addNewItemGet, addNewItemPost, updateItemGet, updateItemPost}
+async function deleteItemGet(req, res){
+    const {itemId} = req.params;
+    const itemDetails = await itemsdb.getItemDetails(itemId);
+    res.render("deleteItemForm", {
+        title: "Delete Item",
+        itemDetails
+    })
+}
+
+async function deleteItemPost(req, res){
+    const {itemId} = req.params;
+    const {confirmation} = req.body;
+    if(confirmation === "true"){
+        await itemsdb.deleteItemById(itemId);
+        res.redirect("/items");
+    }
+    else {
+        res.redirect("/items");
+    }
+}
+
+module.exports = {listAllItems, viewItem, addNewItemGet, addNewItemPost, updateItemGet, updateItemPost,deleteItemGet, deleteItemPost}

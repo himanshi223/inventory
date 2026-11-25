@@ -23,7 +23,7 @@
         </div>
         <div>
             <label for="category">Category</label>
-            <select name="category" id="category" required>
+            <select name="categoryid" id="category" required>
                 <% categories.forEach((category)=>{%>
                     <% if(category.id === itemDetails.categoryid){%>
                         <option value="<%=category.id%>" selected><%=category.category%></option>
@@ -33,7 +33,6 @@
                     }
                 <% }) %>
             </select>
-            <a href="/categories/add">Add new category</a>
         </div>
         <button type="submit">Update Item</button>
     </form>

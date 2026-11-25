@@ -67,10 +67,11 @@ const addNewItemPost = [
                } 
             )
         }
-        const {item, quantity, unit, categoryId} = matchedData(req);
-        await itemsdb.addNewItem(item, quantity, unit, categoryId);
+        const {item, quantity, unit} = matchedData(req);
+        const {categoryid} = req.body;
+        await itemsdb.addNewItem(item, quantity, unit, categoryid);
         console.log("added");
-        res.redirect("/items");
+        res.redirect(`/categories/${categoryid}`);
     }
 ]
 
@@ -90,9 +91,10 @@ const updateItemPost = [
                } 
             )
         }
-        const {item, quantity, unit, categoryId} = matchedData(req);
-        await itemsdb.addNewItem(item, quantity, unit, categoryId, itemId);
-        res.redirect(`/items/${itemId}`);
+        const {item, quantity, unit} = matchedData(req);
+        const categoryid = req.body.categoryid;
+        await itemsdb.updateItemDetails(item, quantity, unit, categoryid, itemId);
+        res.redirect(`/categories/${categoryid}`);
     }
 ]
 

@@ -11,7 +11,7 @@
         <ul>
             <% items.forEach(item => { %>
                 <li>
-                    <a href="/items/<%=item.id%>"><%= item.item %></a><br>
+                    <a href="/items/<%=item.id%>"><%= item.item %></a>
                     <a href="/items/<%=item.id%>/update">Update Item</a>
                 </li>
             <% }) %>
@@ -19,6 +19,9 @@
     <% } else { %>
         <p>No items available for this category</p>
     <% } %>
-    <a href="/items/add">Add New Item</a>
+    <a href="/items/add">Add New Item</a><br>
+    <a href="/">Back to homepage</a>
+    <a href="/items">Items</a>
+    <a href="/categories">Categories</a>
 </body>
 </html>

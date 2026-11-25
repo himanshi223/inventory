@@ -23,12 +23,11 @@
         </div>
         <div>
             <label for="category">Category</label>
-            <select name="category" id="category" required>
+            <select name="categoryid" id="category" required>
                 <% categories.forEach((category)=>{%>
-                   <option><%=category.category%></option>
+                   <option value="<%=category.id%>"><%=category.category%></option>
                 <% }) %>
             </select>
-            <a href="/categories/add">Add new category</a>
         </div>
         <button type="submit">Add new item</button>
     </form>

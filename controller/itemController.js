@@ -2,11 +2,25 @@ const itemsdb = require("../db/queries/items.js");
 const categoriesdb = require("../db/queries/categories.js");
 const { matchedData, body, validationResult } = require("express-validator")
 
+async function getCategoriesWithItems(){
+    const categories = await categoriesdb.getAllCategories();
+    for(const category of categories){
+        const items = await itemsdb.getItemsOfCategory(category.id);
+        category.items = items;
+    }
+    return categories;
+}
+
+
 async function listAllItems(req, res){
     try {
-        const items = await itemsdb.getAllItems();
-        res.render("items", {title: "All Items", items});
-    } catch(err) {
+        const categories = await getCategoriesWithItems();
+        console.log(categories[0]);
+        res.render("items", {
+            title: "Items", 
+            categories
+        });
+    } catch {
         console.error(err);
         res.status(500).send("Internal Server Error");
     }
@@ -71,7 +85,7 @@ const addNewItemPost = [
         const {categoryid} = req.body;
         await itemsdb.addNewItem(item, quantity, unit, categoryid);
         console.log("added");
-        res.redirect(`/categories/${categoryid}`);
+        res.redirect(`/items`);
     }
 ]
 
@@ -94,7 +108,7 @@ const updateItemPost = [
         const {item, quantity, unit} = matchedData(req);
         const categoryid = req.body.categoryid;
         await itemsdb.updateItemDetails(item, quantity, unit, categoryid, itemId);
-        res.redirect(`/categories/${categoryid}`);
+        res.redirect(`/items/${itemId}`);
     }
 ]
 

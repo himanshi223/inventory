@@ -10,6 +10,14 @@
     <%- include("partials/errors.ejs") %>
     <form method="POST" action="./add">
         <div>
+            <label for="category">Category</label>
+            <select name="categoryid" id="category" required>
+                <% categories.forEach((category)=>{%>
+                   <option value="<%=category.id%>"><%=category.category%></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
             <label for="item">Item Name</label>
             <input type="text" name="item" id="item" required/>
         </div>
@@ -20,14 +28,6 @@
         <div>
             <label for="unit">Measuring Unit</label>
             <input type="text" name="unit" id="unit" required/>
-        </div>
-        <div>
-            <label for="category">Category</label>
-            <select name="categoryid" id="category" required>
-                <% categories.forEach((category)=>{%>
-                   <option value="<%=category.id%>"><%=category.category%></option>
-                <% }) %>
-            </select>
         </div>
         <button type="submit">Add new item</button>
     </form>

@@ -20,7 +20,7 @@ async function listItemsOfCategory(req,res){
         console.log(categoryId);
         const items = await itemsdb.getItemsOfCategory(categoryId);
         console.log(items);
-        res.render("items", {title: category, items});
+        res.render("categoryItems", {title: category, items, category: {id: categoryId, category: category}});
     } catch(err) {
         console.error(err);
         res.status(500).send("Internal Server Error");
@@ -72,7 +72,7 @@ const updateCategoryPost = [
             )
         }
         await categoriesdb.updateCategory(matchedData(req).category, categoryId);
-        res.redirect(`/categories`);
+        res.redirect(`/categories/${categoryId}`);
     }
 ];
 

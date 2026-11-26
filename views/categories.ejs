@@ -6,21 +6,19 @@
     <title>Categories</title>
 </head>
 <body>
+    <%- include("partials/navbar.ejs") %>
     <h1>All categories</h1>
+    <a href="/categories/add">Add New Category</a><br>
     <% if(locals.categories) { %>
         <ul>
             <% categories.forEach((category)=>{ %>
                 <li>
                     <a href="categories/<%=category.id%>"><%= category.category %></a> 
-                    <a href="categories/<%=category.id%>/update">Update</a>
-                    <a href="categories/<%=category.id%>/delete">Delete</a>
                 </li>
             <% }) %>
         </ul>
     <% } else{ %>
         <p>No categories yet</p>
     <% } %>
-    <a href="/categories/add">Add New Category</a><br>
-    <a href="/">Back to homepage</a>
 </body>
 </html> 

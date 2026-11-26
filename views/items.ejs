@@ -6,23 +6,22 @@
     <title><%= locals.title %></title>
 </head>
 <body>
+    <%- include("partials/navbar.ejs") %>
     <h1><%= locals.title %></h1>
-    <% if(locals.items && locals.items.length > 0){ %>
-        <ul>
-            <% items.forEach(item => { %>
-                <li>
-                    <a href="/items/<%=item.id%>"><%= item.item %></a>
-                    <a href="/items/<%=item.id%>/update">Update Item</a>
-                    <a href="/items/<%=item.id%>/delete">Delete Item</a>
-                </li>
-            <% }) %>
-        </ul>
-    <% } else { %>
-        <p>No items available for this category</p>
-    <% } %>
-    <a href="/items/add">Add New Item</a><br>
-    <a href="/">Back to homepage</a>
-    <a href="/items">Items</a>
-    <a href="/categories">Categories</a>
+    <a href="/items/add">Add New Item</a><hr>
+    <% locals.categories.forEach(category => { %>
+        <div>
+            <%= category.category %>
+            <ul>
+                <% if(category.items.length > 0) { %>
+                    <% category.items.forEach(item => { %>
+                        <li><a href="items/<%= item.id %>"><%= item.item %></a></li>
+                    <% }) %>
+                <% } else { %>
+                <% } %>
+            </ul>
+        </div>
+        <hr>
+    <% }) %>
 </body>
 </html>

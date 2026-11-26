@@ -1,7 +1,7 @@
 const pool = require("../pool.js");
 
 async function getAllItems(){
-    const {rows} = await pool.query("SELECT * FROM items ORDER BY id");
+    const {rows} = await pool.query("SELECT * FROM items ORDER BY categoryid, id");
     return rows;
 }
 
@@ -27,7 +27,6 @@ async function updateItemDetails(item, quantity, unit, categoryId, itemId){
         "UPDATE items SET item = $1, quantity = $2, unit = $3, categoryId = $4 WHERE id = $5",
         [item, quantity, unit, categoryId, itemId]
     )
-
 }
 
 async function deleteItemById(id){

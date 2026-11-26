@@ -10,6 +10,8 @@
     <p><%=category%></p>
     <% if(locals.itemDetails){ %>
         <p>Quantity Left: <%=itemDetails.quantity%> <%=itemDetails.unit%></p>
+        <a href="<%= itemDetails.id %>/update">Update Item</a>
+        <a href="<%= itemDetails.id %>/delete">Delete Item</a>
     <% } else{ %>
         <p>Sorry no such item available</p>
     <% } %>

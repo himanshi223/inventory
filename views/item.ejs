@@ -3,17 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title><%=title%></title>
 </head>
 <body>
     <h1><%=title%></h1>
-    <p><%=category%></p>
-    <% if(locals.itemDetails){ %>
-        <p>Quantity Left: <%=itemDetails.quantity%> <%=itemDetails.unit%></p>
-        <a href="<%= itemDetails.id %>/update">Update Item</a>
-        <a href="<%= itemDetails.id %>/delete">Delete Item</a>
-    <% } else{ %>
-        <p>Sorry no such item available</p>
-    <% } %>
+    <a href="/items" class="back">Back to Items</a>
+    <div class="details">
+        <% if(locals.itemDetails){ %>
+            <p>Category: <%=category%></p>
+            <p>Quantity Left: <%=itemDetails.quantity%> <%=itemDetails.unit%></p>
+            <div class="links">
+                <a href="<%= itemDetails.id %>/update">Update Item</a>
+                <a href="<%= itemDetails.id %>/delete">Delete Item</a>
+            </div>
+        <% } else{ %>
+            <p>Sorry no such item available</p>
+        <% } %>
+    </div>
 </body>
 </html>

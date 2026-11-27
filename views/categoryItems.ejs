@@ -3,24 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title><% locals.title %></title>
 </head>
 <body>
     <%- include("partials/navbar.ejs") %>
     <h1><%= locals.title %></h1>
-    <% if(locals.items && locals.items.length > 0){ %>
-        <ul>
-            <% items.forEach(item => { %>
-                <li>
-                    <%= item.item %>
-                    <p><%= item.quantity %> <%= item.unit %></p>
-                </li>
-            <% }) %>
-        </ul>
-    <% } else { %>
-        <p>No items available for this category</p>
-    <% } %>
-    <a href="<%=category.id%>/update">Update Category</a>
-    <a href="<%=category.id%>/delete">Delete Category</a>
+    <a href="/categories" class="back">Back to categories</a>
+    <div class="details">
+        <% if(locals.items && locals.items.length > 0){ %>
+            <ul>
+                <% items.forEach(item => { %>
+                    <li class="item-details">
+                        <%= item.item %> <%= item.quantity %> <%= item.unit %>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } else { %>
+            <p>No items available for this category</p>
+        <% } %>
+        <div class="links">
+            <a href="<%=category.id%>/update">Update Category</a>
+            <a href="<%=category.id%>/delete">Delete Category</a>
+        </div>
+    </div>
 </body>
 </html>

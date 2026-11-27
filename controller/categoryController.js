@@ -5,7 +5,6 @@ const {validationResult, body, matchedData} = require("express-validator");
 async function listAllCategories(req, res){
     try {
         const categories = await categoriesdb.getAllCategories();
-        console.log(categories);
         res.render("categories", {title: "All Categories", categories});
     } catch(err) {
         console.error(err);
@@ -17,9 +16,7 @@ async function listItemsOfCategory(req,res){
     try {
         const {categoryId} = req.params;
         const category  = await categoriesdb.getCategory(categoryId);
-        console.log(categoryId);
         const items = await itemsdb.getItemsOfCategory(categoryId);
-        console.log(items);
         res.render("categoryItems", {title: category, items, category: {id: categoryId, category: category}});
     } catch(err) {
         console.error(err);
@@ -90,7 +87,6 @@ async function deleteCategoryGet(req, res){
 async function deleteCategoryPost(req, res){
     const {categoryId} = req.params;
     const {confirmation} = req.body;
-    console.log(confirmation);
     if(confirmation === "true"){
         await itemsdb.deleteItemByCategory(categoryId);
         await categoriesdb.deleteCategory(categoryId);

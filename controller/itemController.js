@@ -15,7 +15,6 @@ async function getCategoriesWithItems(){
 async function listAllItems(req, res){
     try {
         const categories = await getCategoriesWithItems();
-        console.log(categories[0]);
         res.render("items", {
             title: "Items", 
             categories
@@ -30,9 +29,7 @@ async function viewItem(req,res){
     try{
         const {itemId} = req.params;
         const itemDetails = await itemsdb.getItemDetails(itemId);
-        console.log(itemDetails);
         const category = await categoriesdb.getCategory(itemDetails.categoryid);
-        console.log(category)
         res.render("item", {title:itemDetails.item, itemDetails, category})
     }  catch(err) {
         console.error(err);
@@ -50,7 +47,6 @@ async function addNewItemGet(req, res){
 async function updateItemGet(req, res){
     const {itemId} = req.params;
     const itemDetails = await itemsdb.getItemDetails(itemId);
-    console.log(itemDetails)
     res.render("updateItemForm", {
         title: "Update Item", 
         categories: await categoriesdb.getAllCategories(),
@@ -84,7 +80,6 @@ const addNewItemPost = [
         const {item, quantity, unit} = matchedData(req);
         const {categoryid} = req.body;
         await itemsdb.addNewItem(item, quantity, unit, categoryid);
-        console.log("added");
         res.redirect(`/items`);
     }
 ]

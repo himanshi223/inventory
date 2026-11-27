@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title><%= locals.title %></title>
 </head>
 <body>
     <%- include("partials/navbar.ejs") %>
     <h1><%= locals.title %></h1>
-    <a href="/items/add">Add New Item</a><hr>
+    <a class="new" href="/items/add">Add New Item</a>
     <% locals.categories.forEach(category => { %>
-        <div>
+        <div class="category-section">
             <%= category.category %>
-            <ul>
+            <ul class="category-list">
                 <% if(category.items.length > 0) { %>
                     <% category.items.forEach(item => { %>
-                        <li><a href="items/<%= item.id %>"><%= item.item %></a></li>
+                        <li class="item-details"><a href="items/<%= item.id %>"><%= item.item %></a> <span><%= item.quantity %> <%= item.unit %></span></li>
                     <% }) %>
                 <% } else { %>
                 <% } %>
             </ul>
         </div>
-        <hr>
     <% }) %>
 </body>
 </html>

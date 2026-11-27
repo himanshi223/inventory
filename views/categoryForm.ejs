@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
     <title><% title %></title>
 </head>
 <body>
     <h1><% title %></h1>
     <%- include("partials/errors.ejs") %>
     <form method="POST" action="<%=action%>">
-        <div>
+        <div class="form-row">
             <label for="category">Category</label>
             <input type="text" name="category" id="category" value="<%=locals.category%>"/>
         </div>
